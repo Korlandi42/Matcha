@@ -1,0 +1,10 @@
+<mat-toolbar class="logged-toolbar">
+
+    <a routerLink="/browse">Matcha</a>
+    <span fxFlex></span>
+    <button mat-icon-button (click)="reinitNotifBadge()" routerLink="/notifications"><mat-icon matBadge="{{notif}}" matBadgeColor="warn">notifications</mat-icon></button>
+    <button mat-icon-button (click)="reinitMessageBadge()" routerLink="/messages"><mat-icon matBadge="{{notifMessage}}" matBadgeColor="warn">mail_outline</mat-icon></button>
+    <small><a class="hvr-shutter-out-horizontal active" routerLink="/browse">Browse</a></small>
+    <small><a class="hvr-shutter-out-horizontal" routerLink="/profile">Profile</a></small>
+    <small><a class="hvr-shutter-out-horizontal" routerLink="/logout">Logout</a></small>
+  </mat-toolbar>

@@ -1,0 +1,88 @@
+@import '../../../../../assets/scss/_globals';
+
+
+:host {
+
+  color: white;
+
+  .sort {
+    margin-top: 16px;
+  }
+
+  mat-form-field {
+    font-size: 12px;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  mat-label {
+    color: white;
+  }
+
+  ::ng-deep .mat-select-value-text {
+    color: white;
+    font-size: 12px;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    color: white;
+  }
+
+  mat-select-arrow {
+    background-color: white;
+  }
+
+  mat-divider {
+    border-top-color: white;
+  }
+
+  img {
+
+    height: 228px;
+  }
+
+  .card-container {
+    width: 100%;
+  }
+
+  .card {
+  
+    // width: 100%;
+    width: 200px;
+    margin-top: 16px;
+    // margin-left: 16px;
+    box-shadow:
+    0 6px 20px rgba(0, 0, 0.18, 0.18),
+    0 6px 6px rgba(0, 0, 0.25, 0.25);
+  }
+
+  .viewport-section {
+
+    height: 900px;
+    width: 100%;
+    // border: 1px solid rgb(169,169,169)
+  }
+  
+  .item-section {
+    display: inline-block;
+    // padding: 15px;
+    // background: rgb(192,192,192);
+    // margin-bottom: 1px;
+    // text-align: center;
+    // font-size: 15px;
+  }
+
+  .header {
+    color: white;
+    height: 200px;
+    background: #707F9B;
+  }
+
+  .trie {
+    color: white;
+    height: 20px;
+    // background: #707F9B;
+  }
+}

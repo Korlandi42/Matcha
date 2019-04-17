@@ -1,0 +1,14 @@
+<div fxLayout="column">
+    <app-front-top-nav-logged *ngIf="isLoggedIn()"></app-front-top-nav-logged>
+    <mat-toolbar class="toolbar"*ngIf="!isLoggedIn()">
+  
+      <a routerLink="/">Matcha</a>
+      <span fxFlex></span>
+      <small><a class="hvr-shutter-out-horizontal active" routerLink="/">Login</a></small>
+      <small><a class="hvr-shutter-out-horizontal" routerLink="/register">Register</a></small>
+    </mat-toolbar>
+  <!--<div fxShow="true" fxShow.gt-sm="true" fxShow.gt-xs ="true" class="header" *ngIf="isLoggedIn()">
+       <app-front-search  *ngIf="router.url == '/browse'"></app-front-search>
+  </div> -->
+  <div fxShow="false" fxShow.gt-sm="true" fxShow.gt-xs ="true"  class="hide-header" *ngIf="!isLoggedIn()"></div>
+</div> 

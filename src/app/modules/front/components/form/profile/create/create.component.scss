@@ -1,0 +1,75 @@
+@import '../../../../../../../assets/scss/globals';
+
+:host {
+
+body {
+	color:white;
+}
+select::placeholder {
+	color:white !important;
+}
+
+.white-ph {
+  color:red !important;
+}
+
+  h4 {
+    // margin-top: 130px;
+    color: white;
+  }
+
+  mat-divider {
+    border-top-color: white;
+  }
+
+  .create-container {
+    color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    background-image: url('../../../../../../../assets/images/bg_form.png');
+    background-size: cover;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  input {
+
+    margin-left: 8px;
+    margin-right: 8px;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: white;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  button {
+
+    font-family: Raleway;
+    padding: 16px;
+    border-radius: 5px;
+    background-color: transparent;
+  }
+
+  ::placeholder {
+    color: gray;
+    font-size: 12px;
+  }
+
+  .valid-button {
+    background-color: white;
+  }
+
+  .tag-list {
+    width: 100%;
+  }
+
+  #tagInput {
+    border-style: none !important;
+  }
+
+}

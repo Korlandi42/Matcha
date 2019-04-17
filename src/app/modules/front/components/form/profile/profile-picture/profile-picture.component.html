@@ -1,0 +1,15 @@
+<div class="content-container">
+  <div class="upload-container">
+    <label for="file-input">
+      <img *ngIf="!this.imgURL" src="/assets/images/profile-picture-placeholder.png">
+      <img *ngIf="this.imgURL" src={{this.imgURL}}>
+      <div class="overlay">
+        <div class="text"><mat-icon>add_a_photo</mat-icon></div>
+      </div>
+    </label>
+    <input #imageInput id="file-input" type="file" accept="image/*" (change)="processFile(imageInput)" fxShow="false"/>  
+  </div>
+</div>
+<!-- <div>
+  <button fxFlex fxLayoutAlign="center" (click)="sendFile()" type="button">Submit</button>
+</div> -->

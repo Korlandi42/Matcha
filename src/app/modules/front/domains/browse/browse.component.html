@@ -1,0 +1,100 @@
+<!-- <div class="header"> -->
+<!-- <input placeholder="Filter"> -->
+<!-- </div> -->
+<!-- <div fxShow="true" fxShow.gt-sm="true" fxShow.gt-xs ="true" class="header"> -->
+
+<mat-divider></mat-divider>
+
+<div>
+	<div fxLayout="row">
+		<button mat-button (click)="hideShow(expanded)">
+			<mat-icon>search</mat-icon>
+		</button>
+		<span fxFlex></span>
+		<mat-form-field class="sort">
+			<mat-label>Sort by</mat-label>
+			<mat-select (selectionChange)="onSelection($event)" #sort>
+				<mat-option value="option1">Age</mat-option>
+				<mat-option value="option2">Popularity</mat-option>
+				<mat-option value="option3">Distance</mat-option>
+				<mat-option value="option4">Tags</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+
+	<mat-divider *ngIf="expanded == true"></mat-divider>
+	<app-front-search *ngIf="expanded == true" (onFiltre)="onFiltre($event)"></app-front-search>
+	<mat-divider></mat-divider>
+</div>
+
+<div>
+	<div>
+		<h4 fxFlex fxLayoutAlign="center">Browse among future lovers</h4>
+	</div>
+
+	<div *ngIf="array">
+		<div class="card-container" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutAlign="center" *ngIf="!isFiltre" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+			<ng-container *ngFor="let profile of array">
+				<mat-card fxFlex="0 1 20%" fxFlex.lt-sm="33.3%" class="card">
+					<div mat-card-image [ngStyle]="{'background-image':'url('+profile.img+')', 'background-size':'cover', 'background-repeat':'no-repeat', 'background-position':'center', 'min-height':'200px;'}" [routerLink]="['', { outlets: { dialog: ['profile', profile.id_user] }}]">
+
+					</div>
+					<mat-card-content>
+						<p>{{ profile.username }}, {{profile.age}}</p>
+					</mat-card-content>
+					<mat-card-actions fxLayoutAlign="center">
+						<form (ngSubmit)="sendLike(this.id_user, profile.id_user)" *ngIf="!profile.liked && !profile.likedyou && profileComplete">
+							<button mat-button>
+								<mat-icon>favorite</mat-icon>
+							</button>
+						</form>
+						<form (ngSubmit)="sendLike(this.id_user, profile.id_user)" *ngIf="!profile.liked && profile.likedyou && profileComplete">
+							<button mat-button>Like back <mat-icon>favorite</mat-icon></button>
+						</form>
+						<form (ngSubmit)="sendUnlike(this.id_user, profile.id_user)" *ngIf="profile.liked && profileComplete">
+							<button mat-button>
+								<mat-icon>highlight_off</mat-icon>
+							</button>
+						</form>
+
+					</mat-card-actions>
+				</mat-card>
+			</ng-container>
+
+
+		</div>
+
+
+	</div>
+
+	<div *ngIf="array">
+		<div class="card-container" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutAlign="center" *ngIf="isFiltre" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+			<ng-container *ngFor="let profile of filtered_array">
+				<mat-card fxFlex="0 1 20%" fxFlex.lt-sm="33.3%" class="card">
+					<div mat-card-image [ngStyle]="{'background-image':'url('+profile.img+')', 'background-size':'cover', 'background-repeat':'no-repeat', 'background-position':'center', 'min-height':'200px;'}" [routerLink]="['', { outlets: { dialog: ['profile', profile.id_user] }}]">
+
+					</div>
+					<mat-card-content>
+						<p>{{ profile.username }}, {{profile.age}}</p>
+					</mat-card-content>
+					<mat-card-actions fxLayoutAlign="center">
+						<form (ngSubmit)="sendLike(this.id_user, profile.id_user)" *ngIf="!profile.liked && !profile.likedyou && profileComplete">
+							<button mat-button>
+								<mat-icon>favorite</mat-icon>
+							</button>
+						</form>
+						<form (ngSubmit)="sendLike(this.id_user, profile.id_user)" *ngIf="!profile.liked && profile.likedyou && profileComplete">
+							<button mat-button>Like back <mat-icon>favorite</mat-icon></button>
+						</form>
+						<form (ngSubmit)="sendUnlike(this.id_user, profile.id_user)" *ngIf="profile.liked && profileComplete">
+							<button mat-button>
+								<mat-icon>highlight_off</mat-icon>
+							</button>
+						</form>
+
+					</mat-card-actions>
+				</mat-card>
+			</ng-container>
+		</div>
+	</div>
+</div>

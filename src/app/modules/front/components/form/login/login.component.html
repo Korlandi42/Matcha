@@ -1,0 +1,17 @@
+<div>
+  <h4 fxFlex fxLayoutAlign="center">Login</h4>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-between center"  class="login-container">
+
+  <form [formGroup]="loginForm" (submit)="login()">
+    <div fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center">
+      <input formControlName="username" placeholder="Username">
+      <mat-error *ngIf="loginForm.touched && getErrors('username') | async as error">{{ error }}</mat-error>
+      <input formControlName="password" type="password" placeholder="Password">
+      <mat-error *ngIf="loginForm.touched && getErrors('password') | async as error">{{ error }}</mat-error>
+      <button class="signin-button" type="submit" [class.valid-button]="loginForm.valid" [disabled]="loginForm.invalid">Sign In</button>
+    </div>
+    <mat-error *ngIf="errorHttpResponse">{{ problem }}</mat-error>
+  </form>
+  <a routerLink="/forgot-password" >Mot de Passe oublié</a>
+</div>

@@ -1,0 +1,17 @@
+<div class="content-container" fxLayoutAlign="center">
+	<div *ngIf="type == 'directive' && show" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)">
+		<div class="swiper-wrapper">
+			<div *ngFor="let slide of slides" class="swiper-slide">
+				<app-front-upload slide="{{slide}}" [id_user]="id_user" *ngIf="router.url == '/profile'"></app-front-upload>
+				<img *ngIf="router.url != '/profile'" [src]="slide  || 'http://localhost:4200/assets/images/profile-picture-placeholder.png'">
+			</div>
+		</div>
+
+		<div class="swiper-scrollbar" [hidden]="config.scrollbar === false"></div>
+		<div class="swiper-pagination" [hidden]="config.pagination === false"></div>
+
+		<div class="swiper-button-prev" [hidden]="config.navigation === false"></div>
+		<div class="swiper-button-next" [hidden]="config.navigation === false"></div>
+	</div>
+
+</div>

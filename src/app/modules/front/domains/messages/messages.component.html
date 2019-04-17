@@ -1,0 +1,36 @@
+<h4 fxLayoutAlign="center">Messages</h4>
+<div fxLayout="row" class="main-container">
+  <div fxFlex="30" class="name-container">
+      <mat-list *ngFor="let lover of lovers" (click)="openChatRoom(lover.id_lover, lover.id_chatroom)" highlight [elements]="elements">
+      <div fxLayout="row">
+        <img [src]="lover.picture || 'http://localhost:4200/assets/images/profile-picture-placeholder.png'">
+        <mat-list-item >{{lover.surname}} {{lover.name}}</mat-list-item>
+        <span class="dot" *ngIf="lover.isonline"></span>
+      </div>
+      <mat-divider inset="true"></mat-divider>
+    </mat-list>
+  </div>
+  <div fxFlex="70" class="message-container" >
+    <div *ngIf="show" fxLayout="column" class="content-container">
+      <div fxFlex="93" fxLayout="row" class="messages-container">
+        <div class="scroll" fxFlex="100">
+          <ul class="message-list" fxLayout="column">
+            <ng-container *ngFor="let message of messages">
+              <li class="user-message me" *ngIf="message.sender == this.id">
+                <span class="message">{{message.content}}</span>
+              </li>
+              <li class="user-message it" *ngIf="message.sender != this.id">
+                <span class="message">{{message.content}}</span>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+      <div fxFlex="7" class="typing-container">
+        <form fxFlexFill (ngSubmit)='sendMessage(this.currentSender, this.currentReceiver, this.currentChatRoom, messageText)'>
+          <input fxFlex autocomplete="off" autofocus placeholder="Type a message. Hit Enter to send" type="text" name="message" [(ngModel)]="messageText">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

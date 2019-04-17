@@ -1,0 +1,14 @@
+@import '../../../../../assets/scss/_globals';
+
+:host {
+
+    color: white;
+
+    h4, p {
+        color: white;
+    }
+
+    mat-divider {
+        border-top-color: white;
+    }
+}

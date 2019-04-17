@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutAlign="center">
+
+    <a routerLink="/profile/edit" >Edit Profile</a>
+    <app-front-carousel class="carrousel"></app-front-carousel>
+
+    <div fxLayoutAlign="center">
+      <h4>{{profile.surname}} {{profile.name}}</h4>
+    </div>
+    <div class="profile-infos" fxLayout="column">
+      <span>Name : {{profile.name}}</span>
+      <span>Gender : {{profile.genre}}</span>
+      <span>Age : {{profile.age}}</span>
+      <span>Sexual Orientation : {{profile.sexualOrientation}}</span>
+      <span>Biography : {{profile.biography}}</span>
+      <span>Interests : {{profile.tags}}</span>
+      <span>Score : {{profile.score}}</span>
+    </div>
+  </div>
+
+<!--
+  <p>Upload Profile Picture</p>
+
+  <input type="file" (change)="onFileSelected($event)">
+  <app-front-form-profile-profile-picture [(url)]=picurl [editmode]=editEnabled></app-front-form-profile-profile-picture>
+
+  <h3>Settings</h3>
+
+    <label for="cbeditmode">Edit mode</label>
+    <input #cbeditmode id="cbeditmode" [checked]="editEnabled" (change)="editEnabled=cbeditmode.checked" type="checkbox">
+  <button (click)="clear()">Clear</button>
+  {{picurl}} -->

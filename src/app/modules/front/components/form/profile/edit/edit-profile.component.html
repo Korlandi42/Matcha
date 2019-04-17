@@ -1,0 +1,118 @@
+<a routerLink="/profile"><mat-icon>keyboard_arrow_left</mat-icon></a>
+
+<div>
+  <h4 fxFlex fxLayoutAlign="center">Change Your Profile Picture</h4>
+</div>
+<div class="content-container" style="margin: auto;">
+  <div class="upload-container">
+    <label for="file-input">
+      <img [src]="profile.img || 'http://localhost:4200/assets/images/profile-picture-placeholder.png'">
+      <div class="overlay">
+        <div class="text"><mat-icon>add_a_photo</mat-icon></div>
+      </div>
+    </label>
+    <input #imageInput id="file-input" type="file" accept="image/*" (change)="processFile(imageInput)" fxShow="false"/>
+  </div>
+</div>
+<!-- <div style="margin: 10px auto;">
+  <button id="profilepic" style="margin: auto;" fxFlex="0 1" fxLayoutAlign="center" (click)="sendFile()" type="button">Submit your new photo</button>
+</div> -->
+
+<div class="card-container" fxLayout="row wrap" fxLayoutAlign="center">
+    <ng-container *ngFor="let photo of photos">
+      <img mat-card-image [src]="photo.img || 'http://localhost:4200/assets/images/profile-picture-placeholder.png'">
+        <form (ngSubmit)="deletePic(photo.id, id)">
+          <button mat-button><mat-icon>highlight_off</mat-icon></button>
+        </form>
+  </ng-container>
+  </div>
+
+<div>
+  <h4 fxFlex fxLayoutAlign="center">Edit profile</h4>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-between center"  class="edit-container">
+<div style="max-width: 600px">
+  <div>
+    <form [formGroup]="profileForm" (submit)="saveProfile()">
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="center">
+          <input fxFlex="0 1 100%" fxFlex.lt-sm="100%" formControlName="name" value={{profile.name}}>
+          <mat-error *ngIf="profileForm.dirty && getErrors('name') | async as error">{{ error }}</mat-error>
+          <input fxFlex="0 1 100%" fxFlex.lt-sm="100%" formControlName="surname" value={{profile.surname}}>
+          <mat-error *ngIf="profileForm.dirty && getErrors('surname') | async as error">{{ error }}</mat-error>
+          <input fxFlex="0 1 100%" fxFlex.lt-sm="100%" formControlName="age" value={{profile.age}}>
+          <mat-error *ngIf="profileForm.dirty && getErrors('age') | async as error">{{ error }}</mat-error>
+          <input fxFlex="0 1 100%" fxFlex.lt-sm="100%" formControlName="email" type="email" value={{profile.email}}>
+          <mat-error *ngIf="profileForm.dirty && getErrors('email') | async as error">{{ error }}</mat-error>
+          <mat-form-field style="margin-right: 10px;">
+            <select matNativeControl formControlName="genre" value={{profile.genre}}>
+              <option value="male">male</option>
+              <option value="female">female</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field>
+            <select matNativeControl formControlName="sexualOrientation" value={{profile.sexualOrientation}}>
+              <option value="bisexual">bisexual</option>
+              <option value="straight">straight</option>
+              <option value="gay">gay</option>
+            </select>
+          </mat-form-field>
+          <input fxFlex="0 1 100%" fxFlex.lt-sm="100%" formControlName="biography" value={{profile.biography}}>
+          <mat-form-field class="tag-list" style="min-width: 100%;">
+            <mat-chip-list #chipList style="min-width: 100%;">
+              <mat-chip
+                *ngFor="let tag of tags"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(tag)">
+                {{tag}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input id="tagInput"
+                placeholder="New tag..."
+                #tagInput
+                [formControl]="tagCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                {{tag}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <button fxFlex="0 1 100%" fxFlex.lt-sm="100%" type="submit" [disabled]="profileForm.invalid">Edit my profile</button>
+        </div>
+        <mat-error *ngIf="errorHttpResponse">{{ problem }}</mat-error>
+      </form>
+  </div>
+  </div>
+</div>
+
+<div>
+  <h4 fxFlex fxLayoutAlign="center">Change your password</h4>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-between center"  class="edit-container">
+
+  <div>
+    <form [formGroup]="passwordForm" (submit)="changePassword()">
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+          <input fxFlex="0 1 100%" style="display: block;" fxFlex.lt-sm="100%" type="password" formControlName="oldpassword" placeholder="mot de passe actuel">
+          <mat-error *ngIf="passwordForm.touched && getErrors('oldpassword') | async as error">{{ error }}</mat-error>
+          <input fxFlex="0 1 100%" style="display: block;" fxFlex.lt-sm="100%" type="password" formControlName="password" placeholder="nouveau mot de passe">
+          <mat-error *ngIf="passwordForm.touched && getErrors('password') | async as error">{{ error }}</mat-error>
+          <input fxFlex="0 1 100%" style="display: block;" fxFlex.lt-sm="100%" type="password" formControlName="confpassword" placeholder="confirmer le nouveau mot de passe">
+		  <mat-error *ngIf="passwordForm.touched && getErrors('confpassword') | async as error">{{ error }}</mat-error>
+  		  <button fxFlex="0 1 100%" fxFlex.lt-sm="100%" type="submit" [class.valid-button]="passwordForm.valid" [disabled]="passwordForm.invalid">Change my password</button>
+        </div>
+      </form>
+  </div>
+</div>
+
+<div>
+  <h4 fxFlex fxLayoutAlign="center" style="display: block;">Change your location by clicking on the map</h4>
+</div>
+<div style="margin:auto; width: 100%; border-radius: 20px;" fxLayoutAlign="center" id="map" class="map" >
+</div>

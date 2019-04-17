@@ -1,0 +1,75 @@
+<div fxLayout="column" fxFlex fxLayoutAlign="center" fxLayoutGap="44px">
+  <h4 fxFlex fxLayoutAlign="center">Create profile</h4>
+  <mat-divider></mat-divider>
+  	<h4 fxFlex fxLayoutAlign="center">Upload your profile picture</h4>
+	<app-front-form-profile-picture (uploaded)="onUploaded($event)">
+  </app-front-form-profile-picture>
+  <mat-divider></mat-divider>
+  <div fxLayout="column" fxLayoutAlign="space-between center" class="create-container">
+    <form [formGroup]="createprofileForm" (submit)="createProfile()">
+      <div fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center">
+        <div>
+          <input formControlName="name" value={{user.name}}>
+          <mat-error *ngIf="createprofileForm.touched && getErrors('name') | async as error">{{ error }}</mat-error>
+          <input formControlName="surname" value={{user.surname}}>
+          <mat-error *ngIf="createprofileForm.touched && getErrors('surname') | async as error">{{ error }}</mat-error>
+        </div>
+        <div>
+          <input formControlName="age" placeholder="Age">
+          <mat-error *ngIf="createprofileForm.touched && getErrors('age') | async as error">{{ error }}</mat-error>
+          <input formControlName="email" type="email" value={{user.email}}>
+          <mat-error *ngIf="createprofileForm.touched && getErrors('email') | async as error">{{ error }}</mat-error>
+        </div>
+
+          <mat-form-field>
+			<label for="genderSelect">Gender</label>
+            <select id="genderSelect" style="color: white;" class="select-form" matNativeControl formControlName="genre" required>
+              <option value="male">male</option>
+              <option value="female">female</option>
+            </select>
+            <mat-error *ngIf="createprofileForm.touched && getErrors('genre') | async as error">{{ error }}</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+			<label for="orientationSelect">Sexual Orientation</label>
+            <select id="orientationSelect" matNativeControl formControlName="sexualOrientation" required>
+              <option value="bisexual">bisexuel</option>
+              <option value="straight">straight</option>
+              <option value="gay">gay</option>
+            </select>
+            <mat-error *ngIf="createprofileForm.touched && getErrors('sexualOrientation') | async as error">{{ error }}</mat-error>
+          </mat-form-field>
+          <input formControlName="biography" placeholder="Biography, describe yourself in a few words...">
+          <mat-error *ngIf="createprofileForm.touched && getErrors('biography') | async as error">{{ error }}</mat-error>
+			<label for="mesTags">Add some interests :</label>
+          <mat-form-field class="tag-list" id="mesTags">
+            <mat-chip-list #chipList>
+              <mat-chip
+                *ngFor="let tag of tags"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(tag)">
+                {{tag}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input id="tagInput"
+                placeholder="New tag..."
+                #tagInput
+                [formControl]="tagCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                {{tag}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <button type="submit" [class.valid-button]="createprofileForm.valid && uploaded" [disabled]="createprofileForm.invalid || !uploaded">Submit</button>
+          <mat-error *ngIf="errorHttpResponse">{{ problem }}</mat-error>
+          </div>
+        </form>
+  </div>
+</div>

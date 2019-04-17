@@ -1,0 +1,24 @@
+<div>
+  <h4 fxFlex fxLayoutAlign="center">Notifications</h4>
+</div>
+
+<mat-list class="list">
+    <mat-divider></mat-divider>
+    <div
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScrollDown()"
+      >
+    <mat-list-item *ngFor="let notification of array">
+
+      <h4 mat-line *ngIf="notification.type == 'message'">New {{notification.type}} from {{notification.username}}</h4>
+      <h4 mat-line *ngIf="notification.type == 'like'">{{notification.username}} likes you</h4>
+      <h4 mat-line *ngIf="notification.type == 'visit'">{{notification.username}} visited your profile</h4>
+      <h4 mat-line *ngIf="notification.type == 'match'">It's a match with {{notification.username}} <3</h4>
+      <h4 mat-line *ngIf="notification.type == 'unmatch'">{{notification.username}} unmatched you <\3</h4>
+      <p mat-line> 1h </p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+    </div>
+  </mat-list>

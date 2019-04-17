@@ -1,0 +1,38 @@
+@import '../../../../../assets/scss/_globals';
+
+:host {
+	color: white;
+
+	.carrousel {
+		margin-top: 100px;
+	}
+
+	a {
+		text-decoration: none;
+		color: white;
+	}
+	// .profile-container {
+	//   padding: 16px;
+	//   border-radius: 5px;
+	//   background-color: white;
+	//   box-shadow:
+	//   0 6px 20px rgba(0, 0, 0.18, 0.18),
+	//   0 6px 6px rgba(0, 0, 0.25, 0.25);
+	//   margin-left: 16px;
+	//   margin-right: 16px;
+	//   margin-bottom: 16px;
+	// }
+	.profile-infos {
+		color: white;
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 8px;
+		background-image: url("/../../../../../../assets/images/bg_form.png");
+		background-size: cover;
+		margin-left: 16px;
+		margin-right: 16px;
+		margin-bottom: 16px;
+		padding: 32px;
+		box-shadow: 0 6px 20px rgba(0, 0, 0.18, 0.18), 0 6px 6px rgba(0, 0, 0.25, 0.25);
+	}
+}

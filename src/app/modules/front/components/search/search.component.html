@@ -1,0 +1,55 @@
+
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+  <div>
+    <h6 fxLayoutAlign="center">Age</h6>
+    <ng5-slider class="range" [(value)]="valueAge" [(highValue)]="highValueAge" [options]="optionsAge" (userChangeEnd)="onChangeAge($event)">Age</ng5-slider>
+  </div>
+  <div>
+    <h6 fxLayoutAlign="center">Popularity</h6>
+    <ng5-slider class="range" [(value)]="valuePopularity" [(highValue)]="highValuePopularity" [options]="optionsPopularity" (userChangeEnd)="onChangePopularity($event)">Popularity</ng5-slider>
+  </div>
+  <div>
+    <h6 fxLayoutAlign="center">Distance</h6>
+    <ng5-slider class="range" [(value)]="valueDistance" [(highValue)]="highValueDistance" [options]="optionsDistance" (userChangeEnd)="onChangeDistance($event)">Distance</ng5-slider>
+  </div>
+  <div>
+	<h6 fxLayoutAlign="center">Liked me</h6>
+	<input type="checkbox" (value)="like" (change)="onChangeLike()"/>
+  </div>
+  <div>
+	<h6 fxLayoutAlign="center">Visited me</h6>
+	<input type="checkbox" (value)="visited" (change)="onChangeVisited()"/>
+  </div>
+</div>
+<br>
+<mat-form-field class="tag-list">
+  <mat-chip-list #chipList>
+    <mat-chip
+      *ngFor="let tag of tags"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(tag)">
+      {{tag}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Filter by tag..."
+      #tagInput
+      [formControl]="tagCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)"
+      class="inputPlaceholder">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+      {{tag}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<form (submit)="filtreprofile()" fxLayoutAlign="center">
+  <button mat-raised-button fxFlex="0 1 0%" fxFlex.lt-sm="10%" type="submit" (click)="filtre()">Filter</button>
+</form>

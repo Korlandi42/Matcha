@@ -1,0 +1,5 @@
+npm start
+sh users_sql.sh
+sh tags_sql.sh
+node populate_db.js
+node populate_pic.js

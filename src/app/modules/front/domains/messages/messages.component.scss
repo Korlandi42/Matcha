@@ -1,0 +1,113 @@
+@import '../../../../../assets/scss/_globals';
+
+:host {
+
+    color: white;
+    margin-top: 100px;
+
+    mat-list-item {
+        color: white;
+    }
+
+    mat-divider {
+        border-top-color: white;
+    }
+
+    img {
+        border-radius: 35px;
+        margin-left: 8px;
+        // width: 60px;
+        height: 60px;
+        border: 1px solid white;
+        margin-bottom: 1px;
+    }
+
+    .main-container {
+        
+        min-height:50vh;
+        margin-top: 16px;
+        margin-left: 16px;
+        margin-right: 16px;
+
+    }
+
+    .name-container {
+        
+        color: white;
+        border: 2px solid white;
+        border-right-style: none;
+    }
+
+    .message-container {
+        border: 2px solid white;
+        
+    }
+
+    .content-container {
+        height: 100%;
+    }
+
+    input {
+        color: white;
+        background-color: transparent;
+        border: none;
+        border-top: 2px solid white;
+        padding: 16px;
+        outline: none;
+    }
+
+    input::placeholder {
+        color: white;
+    }
+
+  
+    .user-message {
+        margin-bottom: 2px;
+        list-style: none;
+    }
+
+    ul {
+        padding-inline-start: 16px;
+        padding-inline-end: 16px;
+    }
+
+    .me {
+
+        align-self: flex-end;
+        max-width: 50%;
+        padding: 10px;
+        border-radius: 20px;
+        background-color: #008CBA;
+    }
+
+    .it {
+        // display: block;
+        // align-self: flex-start;
+        max-width: 20%;
+        padding: 10px;
+        border-radius: 20px;
+        background-color: gray;
+    }
+
+    .user-id {
+        font-weight: bold;
+        margin-bottom: 3px;
+    }
+
+    .dot {
+        margin-right: 5px;
+        height: 15px;
+        width: 25px;
+        background-color: green;
+        border-radius: 50%;
+        display: inline-block;
+      }
+    .message {
+        word-break: break-all;
+    }
+    .scroll {
+        overflow-y: scroll;
+        
+        max-height: 30em;;
+    }
+}

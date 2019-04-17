@@ -1,0 +1,44 @@
+<div class="dialog-container" fxLayout="column" fxLayoutAlign="center">
+	<div class="content-container" fxLayoutAlign="center">
+		<div *ngIf="type == 'directive' && show" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)">
+			<div class="swiper-wrapper">
+				<div *ngFor="let slide of slides" class="swiper-slide">
+					<div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+						<app-front-upload [slide]="slide" [id_user]="id_user" *ngIf="router.url == '/profile'"></app-front-upload>
+						<img [src]="slide">
+					</div>
+				</div>
+			</div>
+			<div class="swiper-scrollbar" [hidden]="config.scrollbar === false"></div>
+			<div class="swiper-pagination" [hidden]="config.pagination === false"></div>
+
+			<div class="swiper-button-prev" [hidden]="config.navigation === false"></div>
+			<div class="swiper-button-next" [hidden]="config.navigation === false"></div>
+		</div>
+	</div>
+	<div fxLayoutAlign="center">
+		<h4>{{profile[0].name}}'s profile</h4>
+	</div>
+	<div class="profile-infos" fxLayout="column">
+		<p id="likes" *ngIf="profile[0].likedyou">Likes You</p>
+		<p id="online" *ngIf="isonline"> Online </p>
+		<span>Name : {{profile[0].name}}</span>
+		<span>Gender : {{profile[0].genre}}</span>
+		<span>Age : {{profile[0].age}}</span>
+		<span>Sexual Orientation : {{profile[0].sexual_orientation}}</span>
+		<span>Bio : {{profile[0].biography}}</span>
+		<span>Interests : {{tags}}</span>
+		<span>Score : {{profile[0].score}}</span>
+		<span>Distance : {{distance}} km</span>
+		<p *ngIf="!isonline"> Last con: {{lastcon | date:'medium'}}</p>
+
+	</div>
+
+	<form (submit)="block(profile[0].id_user)">
+		<button class="block" fxFlex="0 1 13.3%" fxFlex.lt-sm="100%" type="submit" *ngIf="profileComplete">Block</button>
+	</form>
+	<form (submit)="fake(profile[0].id_user)">
+		<button class="fake" fxFlex="0 1 13.3%" fxFlex.lt-sm="100%" type="submit" *ngIf="profileComplete">Report as Fake</button>
+	</form>
+	<button mat-button mat-dialog-close>Close</button>
+</div>

@@ -1,0 +1,29 @@
+<div>
+  <h4 fxFlex fxLayoutAlign="center">Register</h4>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-between center"  class="register-container">
+  
+  <form [formGroup]="registerForm" (submit)="register()">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center">
+
+      <input fxFlex="0 1 33.3%" fxFlex.lt-sm="100%" formControlName="username" placeholder="Username">
+      <small *ngIf="registerForm.touched && getErrors('username') | async as error">{{ error }}</small>
+
+      <input fxFlex="0 1 33.3%" fxFlex.lt-sm="100%" formControlName="email" type="email" placeholder="Email">
+      <mat-error *ngIf="registerForm.touched && getErrors('email') | async as error">{{ error }}</mat-error>
+
+      <input fxFlex="0 1 33.3%" fxFlex.lt-sm="100%" formControlName="password" type="password" placeholder="Password">
+      <mat-error *ngIf="registerForm.touched && getErrors('password') | async as error">{{ error }}</mat-error>
+      <input fxFlex="0 1 33.3%" fxFlex.lt-sm="100%" formControlName="confirmPassword" type="password" placeholder="Confirm Password">
+      <mat-error *ngIf="registerForm.touched && getErrors('confirmPassword') | async as error">{{ error }}</mat-error>
+
+      <input fxFlex="0 1 33.3%" fxFlex.lt-sm="100%" formControlName="name" placeholder="Name">
+      <mat-error *ngIf="registerForm.touched && getErrors('name') | async as error">{{ error }}</mat-error>
+      <input fxFlex="0 1 33.3%" fxFlex.lt-sm="100%" formControlName="surname" placeholder="First Name">
+      <mat-error *ngIf="registerForm.touched && getErrors('surname') | async as error">{{ error }}</mat-error>
+
+      <button fxFlex="0 1 33.3%" fxFlex.lt-sm="100%" class="register-button" type="submit" [class.valid-button]="registerForm.valid" [disabled]="registerForm.invalid" >Submit</button>
+    </div> 
+    <mat-error *ngIf="errorHttpResponse">{{ problem }}</mat-error>
+  </form>  
+</div>
