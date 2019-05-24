@@ -47,8 +47,8 @@ router.post('/resetpassword', async (req, res, next) => {
     host: 'smtp.sendgrid.net',
     port: 465,
     auth: {
-        user: 'apikey',
-        pass: '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'
+        user: '',
+        pass: ''
     }
   })
 
@@ -75,7 +75,7 @@ router.post('/confirmaccount/:id', async (req, res, next) => {
   let email = req.body.email
   let id_user = req.params.id
 
-  const secret = 'supersecret'
+  const secret = ''
   const token = jwt.sign({ id: id_user }, secret, {
     expiresIn: 86400
   })
@@ -85,8 +85,8 @@ router.post('/confirmaccount/:id', async (req, res, next) => {
     host: 'smtp.sendgrid.net',
     port: 465,
     auth: {
-        user: 'apikey',
-        pass: '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'
+        user: '',
+        pass: ''
     }
   })
 
