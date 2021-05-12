@@ -47,7 +47,7 @@
     "ngx-infinite-scroll": "^7.1.0",
     "ngx-socket-io": "^2.1.1",
     "ngx-swiper-wrapper": "^7.2.1",
-    "nodemailer": "^5.1.1",
+    "nodemailer": "^6.4.16",
     "nodemon": "^1.18.9",
     "request": "^2.88.0",
     "rfr": "^1.2.3",
