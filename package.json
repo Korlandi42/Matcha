@@ -56,7 +56,7 @@
     "sharp": "^0.22.0",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
-    "swiper": "^4.4.6",
+    "swiper": "^6.5.1",
     "tslib": "^1.9.0",
     "uuid": "^3.3.2",
     "zone.js": "~0.8.26"
